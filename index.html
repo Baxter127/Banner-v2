@@ -15,7 +15,7 @@
     -------------------------------*/
     .banner {
       position: relative; /* permite posicionar hijos en absoluto */
-      width: 100%; /* ocupa todo el ancho disponible */
+      width: 80%; /* ocupa todo el ancho disponible */
       max-width: 1440px; /* no excede este tamaño */
       margin: 0 auto; /* centrado */
       overflow: hidden; /* corta lo que sobresalga */
@@ -23,8 +23,8 @@
       color: white; /* texto blanco por defecto */
       min-height: 300px; /* altura mínima si no hay imagen */
       display: flex; /* centra texto si no hay banner */
-      justify-content: center;
-      align-items: center;
+      justify-content: center; /* centra horizontalmente si no hay imagen */
+      align-items: center; /* centra verticalmente si no hay imagen */
       background: #333; /* fondo oscuro de respaldo */
     }
 
@@ -32,10 +32,10 @@
        Texto cuando no hay banners
     -------------------------------*/
     .banner p {
-       color: white;
-       font-size: 1.5rem;
-       font-weight: bold;
-       text-align: center;
+       color: white; /* color de texto */
+       font-size: 1.5rem; /* tamaño grande */
+       font-weight: bold; /* en negritas */
+       text-align: center; /* centrado en pantalla */
     }
 
     /* ------------------------------
@@ -44,7 +44,7 @@
     .banner img {
       width: 100%; /* se ajusta al ancho */
       height: auto; /* mantiene proporción */
-      display: block; /* quita espacios extras */
+      display: block; /* quita espacios extras debajo */
     }
 
     /* ------------------------------
@@ -54,17 +54,17 @@
       position: absolute; /* se coloca encima del banner */
       top: 20%; /* separación desde arriba */
       right: 8%; /* separación desde la derecha */
-      max-width: 35%; /* ancho máximo */
+      max-width: 35%; /* ancho máximo del bloque */
     }
 
     /* ------------------------------
        Título dentro del banner
     -------------------------------*/
     .contenido h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin: 0 0 15px;
-      line-height: 1.2;
+      font-size: 2.5rem; /* tamaño grande */
+      font-weight: 800; /* peso fuerte */
+      margin: 0 0 15px; /* margen inferior */
+      line-height: 1.2; /* espacio entre líneas */
       text-transform: uppercase; /* texto en mayúsculas */
     }
 
@@ -72,24 +72,24 @@
        Párrafo dentro del banner
     -------------------------------*/
     .contenido p {
-      font-size: 1.2rem;
-      font-weight: 500;
-      margin: 0 0 25px;
-      line-height: 1.5;
+      font-size: 1.2rem; /* tamaño medio */
+      font-weight: 500; /* seminegrita */
+      margin: 0 0 25px; /* espacio debajo */
+      line-height: 1.5; /* interlineado cómodo */
     }
 
     /* ------------------------------
        Botón CTA (call-to-action)
     -------------------------------*/
     .cta {
-      display: inline-block;
-      padding: 14px 32px;
+      display: inline-block; /* se comporta como bloque en línea */
+      padding: 14px 32px; /* relleno interno */
       background: #fff;   /* fondo blanco */
       color: #e30613;     /* texto rojo */
-      font-weight: bold;
-      font-size: 1.1rem;
+      font-weight: bold; /* negritas */
+      font-size: 1.1rem; /* tamaño del texto */
       border-radius: 4px; /* esquinas redondeadas */
-      text-decoration: none;
+      text-decoration: none; /* sin subrayado */
       transition: all 0.3s ease; /* animación en hover */
     }
 
@@ -103,74 +103,77 @@
        Cinta inferior del banner
     -------------------------------*/
     .cinta {
-      position: absolute;
-      bottom: 0; /* pegada abajo */
+      position: absolute; /* pegada dentro del contenedor */
+      bottom: 0; /* alineada abajo */
       width: 100%; /* ocupa todo el ancho */
       background: #000; /* negro */
       color: #fff; /* texto blanco */
-      text-align: center;
-      font-size: 1rem;
-      font-weight: bold;
-      padding: 10px;
+      text-align: center; /* centrado */
+      font-size: 1rem; /* tamaño base */
+      font-weight: bold; /* negritas */
+      padding: 10px; /* espacio interno */
     }
-/* ------------------------------
-   Versión Desktop
--------------------------------*/
-.banner.desktop .contenido {
-  top: 15%;
-  right: 10%;
-  max-width: 40%;
-  text-align: left;
-}
 
-.banner.desktop .contenido h1 {
-  font-size: 3rem;
-  font-weight: 800;
-}
+    /* ------------------------------
+       Versión Desktop (pantallas grandes)
+    -------------------------------*/
+    .banner.desktop .contenido {
+      top: 15%; /* más arriba que en mobile */
+      right: 10%; /* más separado de la derecha */
+      max-width: 40%; /* ancho mayor */
+      text-align: left; /* alineado a la izquierda */
+    }
 
-.banner.desktop .contenido p {
-  font-size: 1.3rem;
-  font-weight: 500;
-}
+    .banner.desktop .contenido h1 {
+      font-size: 3rem; /* título más grande */
+      font-weight: 800;
+    }
 
-.banner.desktop .cta {
-  font-size: 1.2rem;
-  padding: 16px 36px;
-}
+    .banner.desktop .contenido p {
+      font-size: 1.3rem; /* párrafo más grande */
+      font-weight: 500;
+    }
 
-/* ------------------------------
-   Versión Móvil
--------------------------------*/
-@media (min-width: 768px) {
-.banner.movil .contenido {
-  top: 20%;
-  left: 5%;
-  right: 5%;
-  max-width: 90%;
-  text-align: center;
-}
+    .banner.desktop .cta {
+      font-size: 1.2rem; /* botón más grande */
+      padding: 16px 36px; /* más espacio interno */
+    }
 
-.banner.movil .contenido h1 {
-  font-size: 2rem;
-  font-weight: 700;
-}
+    /* ------------------------------
+       Versión Móvil (pantallas verticales)
+    -------------------------------*/
+    @media (min-height: 768px) { /* condición según altura mínima */
+      .banner.movil .contenido {
+        top: 20%; /* centrado un poco más abajo */
+        left: 5%; /* margen izquierdo */
+        right: 5%; /* margen derecho */
+        max-width: 90%; /* ancho casi total */
+        text-align: center; /* contenido centrado */
+      }
 
-.banner.movil .contenido p {
-  font-size: 1.5rem; 
-  font-weight: 400;
-}
+      .banner.movil .contenido h1 {
+        font-size: 2rem; /* título más pequeño */
+        font-weight: 700;
+      }
 
-.banner.movil .cta {
-  font-size: 1rem; 
-  padding: 12px 24px;
-}
-}
+      .banner.movil .contenido p {
+        font-size: 1.5rem; /* párrafo un poco más grande */
+        font-weight: 400;
+      }
+
+      .banner.movil .cta {
+        font-size: 1rem; 
+        padding: 12px 24px; /* botón más compacto */
+      }
+    }
     </style>
 </head>
 <body>
 
+  <!-- Contenedor del banner dinámico -->
   <div class="banner" id="banner"></div>
 
+  <!-- Script externo con la lógica JS -->
   <script src="script.js"></script>
 </body>
 </html>
