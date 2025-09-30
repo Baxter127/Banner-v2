@@ -55,20 +55,27 @@ function mostrarBanner(bannerSeleccionado) {
 }
 
 function aplicarResponsive() {
-    const alto = window.innerHeight; // ahora medimos el alto
-    const desktop = document.querySelector("#banner .desktop");
-    const movil = document.querySelector("#banner .movil");
+    const alto = window.innerHeight;
+    const banner = document.getElementById("banner");
+    const desktop = banner.querySelector(".desktop");
+    const movil = banner.querySelector(".movil");
 
     if (!desktop || !movil) return;
 
     if (alto >= 768) {
-        // Mostrar desktop en >=768px de alto
+        // Mostrar desktop
         movil.style.display = "none";
         desktop.style.display = "block";
+
+        banner.classList.remove("movil");
+        banner.classList.add("desktop");
     } else {
-        // Mostrar móvil en <768px de alto
+        // Mostrar móvil
         desktop.style.display = "none";
         movil.style.display = "block";
+
+        banner.classList.remove("desktop");
+        banner.classList.add("movil");
     }
 }
 
@@ -102,3 +109,4 @@ async function cargarBanner() {
 document.addEventListener("DOMContentLoaded", cargarBanner);
 window.addEventListener("resize", aplicarResponsive);
 window.addEventListener("load", aplicarResponsive);
+
