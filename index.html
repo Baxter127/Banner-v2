@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Publicidad UVM</title>
+  <style>
+  body {
+      margin:0; /* sin márgenes */
+      font-family: 'Segoe UI', sans-serif; /* tipografía */
+      background:#f5f5f5; /* fondo gris claro */
+    }
+
+    /* ------------------------------
+       Contenedor principal del banner
+    -------------------------------*/
+    .banner {
+      position: relative; /* permite posicionar hijos en absoluto */
+      width: 100%; /* ocupa todo el ancho disponible */
+      max-width: 1440px; /* no excede este tamaño */
+      margin: 0 auto; /* centrado */
+      overflow: hidden; /* corta lo que sobresalga */
+      text-align: left; /* texto alineado a la izquierda */
+      color: white; /* texto blanco por defecto */
+      min-height: 300px; /* altura mínima si no hay imagen */
+      display: flex; /* centra texto si no hay banner */
+      justify-content: center;
+      align-items: center;
+      background: #333; /* fondo oscuro de respaldo */
+    }
+
+    /* ------------------------------
+       Texto cuando no hay banners
+    -------------------------------*/
+    .banner p {
+       color: white;
+       font-size: 1.5rem;
+       font-weight: bold;
+       text-align: center;
+    }
+
+    /* ------------------------------
+       Imagen del banner
+    -------------------------------*/
+    .banner img {
+      width: 100%; /* se ajusta al ancho */
+      height: auto; /* mantiene proporción */
+      display: block; /* quita espacios extras */
+    }
+
+    /* ------------------------------
+       Contenido que va sobre la imagen
+    -------------------------------*/
+    .contenido {
+      position: absolute; /* se coloca encima del banner */
+      top: 20%; /* separación desde arriba */
+      right: 8%; /* separación desde la derecha */
+      max-width: 35%; /* ancho máximo */
+    }
+
+    /* ------------------------------
+       Título dentro del banner
+    -------------------------------*/
+    .contenido h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 0 0 15px;
+      line-height: 1.2;
+      text-transform: uppercase; /* texto en mayúsculas */
+    }
+
+    /* ------------------------------
+       Párrafo dentro del banner
+    -------------------------------*/
+    .contenido p {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin: 0 0 25px;
+      line-height: 1.5;
+    }
+
+    /* ------------------------------
+       Botón CTA (call-to-action)
+    -------------------------------*/
+    .cta {
+      display: inline-block;
+      padding: 14px 32px;
+      background: #fff;   /* fondo blanco */
+      color: #e30613;     /* texto rojo */
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 4px; /* esquinas redondeadas */
+      text-decoration: none;
+      transition: all 0.3s ease; /* animación en hover */
+    }
+
+    /* Efecto hover en el botón */
+    .cta:hover {
+      background: #e30613; /* rojo de fondo */
+      color: #fff; /* texto blanco */
+    }
+
+    /* ------------------------------
+       Cinta inferior del banner
+    -------------------------------*/
+    .cinta {
+      position: absolute;
+      bottom: 0; /* pegada abajo */
+      width: 100%; /* ocupa todo el ancho */
+      background: #000; /* negro */
+      color: #fff; /* texto blanco */
+      text-align: center;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 10px;
+    }
+    
+    @media (min-width: 768px) {
+  .contenido {
+    top: 15%;
+    right: 10%;
+    max-width: 40%;
+  }
+
+  .contenido h1 {
+    font-size: 3rem;
+  }
+
+  .contenido p {
+    font-size: 1.3rem;
+  }
+
+  .cta {
+    font-size: 1.2rem;
+    padding: 16px 36px;
+  }
+}
+
+    </style>
+</head>
+<body>
+
+  <div class="banner" id="banner"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
