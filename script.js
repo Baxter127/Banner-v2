@@ -1,38 +1,31 @@
-// URL base de Google Sheets (archivo publicado en formato CSV)
 const baseUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ7s2i7Ntt_hHKjayaDy58Joj8HO1deKznbBXfFiWMchrEfhIQc_RM-y8lWATAVlI36ya-5iiXGG1BY/pub?output=csv";
 
-// ------------------------------
-// Función para convertir CSV a JSON
-// ------------------------------
+// Parsear CSV
 function csvToJson(csv) {
-    const rows = csv.trim().split("\n"); // separa el CSV en filas
-    rows.shift(); // elimina la primera fila (encabezados)
+    const rows = csv.trim().split("\n");
+    rows.shift();
     return rows.filter(r => r.trim() !== "").map(row => {
-        // divide cada fila en columnas, respetando comillas
         const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
         return {
-            imagenDesktop: cols[1]?.replace(/"/g, "") || "", // URL imagen desktop
-            imagenMobile: cols[2]?.replace(/"/g, "") || "",  // URL imagen móvil
-            titulo: cols[3]?.replace(/"/g, "") || "",        // título del banner
-            condicion: cols[4]?.replace(/"/g, "") || "",     // texto secundario
-            boton: cols[5]?.replace(/"/g, "") || "",         // texto del botón
-            ligaboton: cols[6]?.replace(/"/g, "") || "",     // link del botón
-            cta: cols[7]?.replace(/"/g, "") || "",           // CTA alternativo
-            cinta: cols[8]?.replace(/"/g, "") || "",         // texto de la cinta inferior
-            ligacinta: cols[9]?.replace(/"/g, "") || "",     // link de la cinta
-            onoff: (cols[10] || "").toLowerCase().trim()     // estado ON/OFF
+            imagenDesktop: cols[1]?.replace(/"/g, "") || "",
+            imagenMobile: cols[2]?.replace(/"/g, "") || "",
+            titulo: cols[3]?.replace(/"/g, "") || "",
+            condicion: cols[4]?.replace(/"/g, "") || "",
+            boton: cols[5]?.replace(/"/g, "") || "",
+            ligaboton: cols[6]?.replace(/"/g, "") || "",
+            cta: cols[7]?.replace(/"/g, "") || "",
+            cinta: cols[8]?.replace(/"/g, "") || "",
+            ligacinta: cols[9]?.replace(/"/g, "") || "",
+            onoff: (cols[10] || "").toLowerCase().trim()
         };
     });
 }
 
-// ------------------------------
-// Función para mostrar un banner en el DOM
-// ------------------------------
+// Mostrar banner
 function mostrarBanner(bannerSeleccionado) {
-    const banner = document.getElementById("banner"); // contenedor principal
-    if (!bannerSeleccionado) return; // si no hay banner, salir
+    const banner = document.getElementById("banner");
+    if (!bannerSeleccionado) return;
 
-    // Inserta el HTML dinámico del banner
     banner.innerHTML = `
         <img class="desktop" src="${bannerSeleccionado.imagenDesktop}" alt="banner desktop">
         <img class="movil" src="${bannerSeleccionado.imagenMobile}" alt="banner móvil">
@@ -44,11 +37,9 @@ function mostrarBanner(bannerSeleccionado) {
             </a>
         </div>
         ${
-            // Si existe texto en la cinta, lo agrega
             bannerSeleccionado.cinta
                 ? `<div class="cinta">
                     ${
-                        // Si la cinta tiene link, lo envuelve en <a>
                         bannerSeleccionado.ligacinta
                         ? `<a href="${bannerSeleccionado.ligacinta}" target="_blank" style="color:white; text-decoration:none;">${bannerSeleccionado.cinta}</a>`
                         : bannerSeleccionado.cinta
@@ -58,31 +49,27 @@ function mostrarBanner(bannerSeleccionado) {
         }
     `;
 
-    // Ajusta visibilidad según tamaño de pantalla
+    // 🔹 Ajustar visibilidad según ancho
     aplicarResponsive();
 }
 
-// ------------------------------
-// Función para alternar entre versión desktop y móvil
-// ------------------------------
 function aplicarResponsive() {
-    const alto = window.innerHeight; // mide la altura de la ventana
+    const alto = window.innerHeight;
     const banner = document.getElementById("banner");
-    const desktop = banner.querySelector(".desktop"); // imagen desktop
-    const movil = banner.querySelector(".movil");     // imagen móvil
+    const desktop = banner.querySelector(".desktop");
+    const movil = banner.querySelector(".movil");
 
-    if (!desktop || !movil) return; // si no existen imágenes, salir
+    if (!desktop || !movil) return;
 
-    // Condición de cambio (usa altura en lugar de ancho)
     if (alto <= 768) {
-        // Mostrar versión desktop
+        // Mostrar desktop
         movil.style.display = "none";
         desktop.style.display = "block";
 
         banner.classList.remove("movil");
         banner.classList.add("desktop");
     } else {
-        // Mostrar versión móvil
+        // Mostrar móvil
         desktop.style.display = "none";
         movil.style.display = "block";
 
@@ -91,40 +78,37 @@ function aplicarResponsive() {
     }
 }
 
-// ------------------------------
-// Función para cargar banners desde Google Sheets
-// ------------------------------
+// Cargar banners desde Google Sheets
 async function cargarBanner() {
     try {
-        const csvUrl = `${baseUrl}&t=${Date.now()}`; // agrega timestamp para evitar caché
-        const res = await fetch(csvUrl); // obtiene el CSV
-        const csvData = await res.text(); // lo convierte a texto
-        const data = csvToJson(csvData);  // lo parsea a JSON
+        const csvUrl = `${baseUrl}&t=${Date.now()}`; // evitar cache
+        const res = await fetch(csvUrl);
+        const csvData = await res.text();
+        const data = csvToJson(csvData);
 
-        // Filtra solo los banners activos (on)
         const activos = data.filter(b => b.onoff === "on");
         if (activos.length === 0) {
             document.getElementById("banner").innerHTML = "<p>No hay banners disponibles.</p>";
             return;
         }
 
-        // Selecciona un banner aleatorio de los activos
         const seleccionado = activos[Math.floor(Math.random() * activos.length)];
         mostrarBanner(seleccionado);
 
-        // Escucha cambios de tamaño de ventana para re-aplicar responsive
+        // Escuchar cambios de tamaño
         window.addEventListener("resize", aplicarResponsive);
 
     } catch (err) {
-        // Manejo de errores en la carga
         console.error("Error cargando el banner:", err);
         document.getElementById("banner").innerHTML = "<p>Error al cargar banner</p>";
     }
 }
 
-// ------------------------------
-// Ejecutar funciones al cargar la página
-// ------------------------------
-document.addEventListener("DOMContentLoaded", cargarBanner); // carga inicial
-window.addEventListener("resize", aplicarResponsive);         // al redimensionar
-window.addEventListener("load", aplicarResponsive);           // al terminar de cargar
+// Ejecutar al cargar la página
+document.addEventListener("DOMContentLoaded", cargarBanner);
+window.addEventListener("resize", aplicarResponsive);
+window.addEventListener("load", aplicarResponsive);
+
+
+
+
