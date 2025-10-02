@@ -1,176 +1,198 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"> <!-- Define el idioma del documento como español -->
 <head>
-  <meta charset="UTF-8">
-  <title>Publicidad UVM</title>
+  <meta charset="UTF-8"> <!-- Codificación de caracteres UTF-8 -->
+  <title>Publicidad UVM</title> <!-- Título de la pestaña del navegador -->
+
   <style>
- body {
-      margin:0; /* sin márgenes */
-      font-family: 'Segoe UI', sans-serif; /* tipografía */
-      background:#f5f5f5; /* fondo gris claro */
+    /* ------------------------------
+       Estilos base del documento
+    -------------------------------*/
+    body {
+      margin: 0; /* Elimina márgenes por defecto del navegador */
+      font-family: 'Segoe UI', sans-serif; /* Fuente moderna y legible */
+      background: #f5f5f5; /* Fondo gris claro para contraste */
     }
 
     /* ------------------------------
        Contenedor principal del banner
     -------------------------------*/
     .banner {
-      position: relative; /* permite posicionar hijos en absoluto */
-      width: 100%; /* ocupa todo el ancho disponible */
-      max-width: 1440px; /* no excede este tamaño */
-      margin: 0 auto; /* centrado */
-      overflow: hidden; /* corta lo que sobresalga */
-      text-align: left; /* texto alineado a la izquierda */
-      color: white; /* texto blanco por defecto */
-      min-height: 300px; /* altura mínima si no hay imagen */
-      display: flex; /* centra texto si no hay banner */
-      justify-content: center;
-      align-items: center;
-      background: #333; /* fondo oscuro de respaldo */
+      position: relative; /* Permite posicionar elementos hijos con position:absolute */
+      width: 100%; /* Ocupa todo el ancho disponible */
+      max-width: 1440px; /* Limita el ancho máximo para pantallas grandes */
+      margin: 0 auto; /* Centra horizontalmente */
+      overflow: hidden; /* Oculta contenido que sobresalga del contenedor */
+      text-align: left; /* Alinea texto a la izquierda por defecto */
+      color: white; /* Texto blanco por defecto */
+      min-height: 300px; /* Altura mínima si no hay imagen */
+      display: flex; /* Permite centrar contenido con flexbox */
+      justify-content: center; /* Centra horizontalmente el contenido */
+      align-items: center; /* Centra verticalmente el contenido */
+      background: #333; /* Fondo oscuro de respaldo si no hay imagen */
     }
 
     /* ------------------------------
-       Texto cuando no hay banners
+       Texto de fallback si no hay imagen
     -------------------------------*/
     .banner p {
-       color: white;
-       font-size: 1.5rem;
-       font-weight: bold;
-       text-align: center;
+      color: white; /* Texto blanco */
+      font-size: 1.5rem; /* Tamaño de fuente ≈24px */
+      font-weight: bold; /* Texto en negrita */
+      text-align: center; /* Centrado horizontal */
     }
 
     /* ------------------------------
        Imagen del banner
     -------------------------------*/
     .banner img {
-      width: 100%; /* se ajusta al ancho */
-      height: auto; /* mantiene proporción */
-      display: block; /* quita espacios extras */
+      width: 100%; /* Imagen ocupa todo el ancho */
+      height: auto; /* Mantiene proporción original */
+      display: block; /* Elimina espacios extra debajo de la imagen */
     }
 
     /* ------------------------------
-       Contenido que va sobre la imagen
+       Contenido superpuesto sobre la imagen
     -------------------------------*/
     .contenido {
-      position: absolute; /* se coloca encima del banner */
-      top: 20%; /* separación desde arriba */
-      right: 8%; /* separación desde la derecha */
-      max-width: 35%; /* ancho máximo */
+      position: absolute; /* Se coloca encima de la imagen */
+      top: 20%; /* Separación desde el borde superior */
+      right: 8%; /* Separación desde el borde derecho */
+      max-width: 35%; /* Limita el ancho del bloque de contenido */
     }
 
     /* ------------------------------
        Título dentro del banner
     -------------------------------*/
     .contenido h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin: 0 0 15px;
-      line-height: 1.2;
-      text-transform: uppercase; /* texto en mayúsculas */
+      font-size: 2.5rem; /* ≈40px, ideal para encabezados */
+      font-weight: 800; /* Extra grueso para destacar */
+      margin: 0 0 20px; /* Margen inferior para separar del párrafo */
+      line-height: 1.2; /* Compacto pero legible */
+      text-transform: uppercase; /* Convierte texto a mayúsculas */
     }
 
     /* ------------------------------
        Párrafo dentro del banner
     -------------------------------*/
     .contenido p {
-      font-size: 1.2rem;
-      font-weight: 500;
-      margin: 0 0 25px;
-      line-height: 1.5;
+      font-size: 1.3rem; /* ≈21px, cómodo para lectura */
+      font-weight: 400; /* Peso normal */
+      margin: 0 0 25px; /* Margen inferior para separación */
+      line-height: 1.5; /* Espaciado entre líneas para legibilidad */
     }
 
     /* ------------------------------
-       Botón CTA (call-to-action)
+       Botón CTA (Call to Action)
     -------------------------------*/
     .cta {
-      display: inline-block;
-      padding: 14px 32px;
-      background: #fff;   /* fondo blanco */
-      color: #e30613;     /* texto rojo */
-      font-weight: bold;
-      font-size: 1.1rem;
-      border-radius: 4px; /* esquinas redondeadas */
-      text-decoration: none;
-      transition: all 0.3s ease; /* animación en hover */
+      display: inline-block; /* Se comporta como bloque en línea */
+      padding: 14px 32px; /* Espaciado interno: vertical y horizontal */
+      background: #fff; /* Fondo blanco */
+      color: #e30613; /* Texto rojo corporativo */
+      font-weight: 400; /* TAMAÑO DE NEGRITAS */
+      font-size: 1.1rem; /* ≈18px */
+      border-radius: 4px; /* Bordes redondeados */
+      text-decoration: none; /* Elimina subrayado si es enlace */
+      transition: all 0.3s ease; /* Suaviza animaciones al hacer hover */
     }
 
-    /* Efecto hover en el botón */
+    /* ------------------------------
+       Efecto hover en el botón CTA
+    -------------------------------*/
     .cta:hover {
-      background: #e30613; /* rojo de fondo */
-      color: #fff; /* texto blanco */
+      background: #e30613; /* Fondo rojo al pasar el cursor */
+      color: #fff; /* Texto blanco en hover */
     }
 
     /* ------------------------------
        Cinta inferior del banner
     -------------------------------*/
     .cinta {
-      position: absolute;
-      bottom: 0; /* pegada abajo */
-      width: 100%; /* ocupa todo el ancho */
-      background: #000; /* negro */
-      color: #fff; /* texto blanco */
-      text-align: center;
-      font-size: 1rem;
-      font-weight: bold;
-      padding: 10px;
+      position: absolute; /* Posicionada sobre el banner */
+      bottom: 0; /* Pegada al borde inferior */
+      width: 100%; /* Ocupa todo el ancho */
+      background: #000; /* Fondo negro */
+      color: #fff; /* Texto blanco */
+      text-align: center; /* Centrado horizontal */
+      font-size: 1rem; /* ≈16px */
+      font-weight: bold; /* Negrita */
+      padding: 10px; /* Espaciado interno */
     }
-/* ------------------------------
-   Versión Desktop
--------------------------------*/
-.banner.desktop .contenido {
-  top: 15%;
-  right: 10%;
-  max-width: 40%;
-  text-align: left;
-}
 
-.banner.desktop .contenido h1 {
-  font-size: 3rem;
-  font-weight: 800;
-}
+    /* ------------------------------
+       Versión Desktop
+    -------------------------------*/
+    .banner.desktop .contenido {
+      top: 15%; /* Ajuste vertical más arriba */
+      right: 10%; /* Separación desde el borde derecho */
+      max-width: 40%; /* Más ancho que en móvil */
+      text-align: left; /* Alineación izquierda */
+    }
 
-.banner.desktop .contenido p {
-  font-size: 1.3rem;
-  font-weight: 500;
-}
+    .banner.desktop .contenido h1 {
+      font-size: 3rem; /* ≈48px, más grande para desktop */
+      font-weight: 800;
+      margin: 0 0 20px;
+    }
 
-.banner.desktop .cta {
-  font-size: 1.2rem;
-  padding: 16px 36px;
-}
+    .banner.desktop .contenido p {
+      font-size: 1.4rem; /* ≈22px */
+      font-weight: 600; /* Más grueso que normal */
+      margin: 0 0 100px; /* Margen inferior amplio para separar del botón */
+    }
 
-/* ------------------------------
-   Versión Móvil
--------------------------------*/
-@media (min-height: 768px) {
-.banner.movil .contenido {
-  top: 20%;
-  left: 5%;
-  right: 5%;
-  max-width: 90%;
-  text-align: center;
-}
+    .banner.desktop .cta {
+      font-size: 1.2rem; /* ≈19px */
+      padding: 16px 36px; /* Espaciado más amplio */
+      margin: 0 330px; /* Empuja el botón hacia el centro desde los lados */
+      display: inline-block;
+      text-align: center;
+      white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    }
 
-.banner.movil .contenido h1 {
-  font-size: 2rem;
-  font-weight: 700;
-}
+    /* ------------------------------
+       Versión Móvil (pantallas altas)
+    -------------------------------*/
+    @media (min-height: 768px) {
+      .banner.movil .contenido {
+        top: 5%; /* Más cerca del borde superior */
+        left: 5%; /* Separación lateral izquierda */
+        right: 5%; /* Separación lateral derecha */
+        max-width: 90%; /* Más ancho para pantallas pequeñas */
+        text-align: center; /* Centrado horizontal */
+      }
 
-.banner.movil .contenido p {
-  font-size: 1.5rem;
-  font-weight: 400;
-}
+      .banner.movil .contenido h1 {
+        font-size: 5.2rem; /* ≈83px, muy grande para destacar en móvil */
+        font-weight: 700; /* Negrita moderada */
+      }
 
-.banner.movil .cta {
-  font-size: 1rem;
-  padding: 12px 24px;
-}
-}
-    </style>
+      .banner.movil .contenido p {
+        color: white;
+        font-size: 2.2rem; /* ≈35px, muy legible en móvil */
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .banner.movil .cta {
+        font-size: 3rem; /* ≈32px, botón grande para pantallas táctiles */
+        margin-top: 320px; /* Empuja el botón hacia abajo */
+        padding: 10px 150px; /* Espaciado horizontal amplio */
+      }
+
+      .banner.movil .cinta {
+        font-size: 2rem; /* Texto grande en la cinta inferior */
+      }
+    }
+  </style>
 </head>
-<body>
 
+<body>
+  <!-- Contenedor del banner, se le agregará clase .desktop o .movil dinámicamente -->
   <div class="banner" id="banner"></div>
 
+  <!-- Script externo para manejar lógica del banner -->
   <script src="script.js"></script>
 </body>
 </html>
