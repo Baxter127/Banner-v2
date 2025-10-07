@@ -13,20 +13,20 @@ function csvToJson(csv) {
       const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
 
       // Retorna un objeto con los datos del banner
-      return {
-        imagenDesktop: cols[1]?.replace(/"/g, "") || "",     // Imagen para escritorio
-        imagenMobile: cols[2]?.replace(/"/g, "") || "",      // Imagen para móvil
-        titulo: cols[3]?.replace(/"/g, "") || "",            // Título del banner
-        condicion: cols[4]?.replace(/"/g, "") || "",         // Condición o subtítulo
-        boton: cols[5]?.replace(/"/g, "") || "",             // Texto del botón
-        ligaboton: cols[6]?.replace(/"/g, "") || "",         // Enlace del botón
-        cta: cols[7]?.replace(/"/g, "") || "",               // Enlace alternativo
-        cinta: cols[8]?.replace(/"/g, "") || "",             // Texto de la cinta
-        cintaOnOff: (cols[9] || "").toLowerCase().trim(),    // Celda J: controla si se muestra la cinta
-        ligacinta: cols[10]?.replace(/"/g, "") || "",        // Enlace de la cinta
-        onoff: (cols[11] || "").toLowerCase().trim()         // Celda L: controla si el banner está activo
-      };
-    });
+        return {
+          imagenDesktop: cols[1]?.replace(/"/g, "") || "",     // Imagen para escritorio
+          imagenMobile: cols[2]?.replace(/"/g, "") || "",      // Imagen para móvil
+          titulo: cols[3]?.replace(/"/g, "") || "",            // Título del banner
+          condicion: cols[4]?.replace(/"/g, "") || "",         // Condición o subtítulo
+          boton: cols[5]?.replace(/"/g, "") || "",             // Texto del botón
+          ligaboton: cols[6]?.replace(/"/g, "") || "",         // Enlace del botón
+          cta: cols[7]?.replace(/"/g, "") || "",               // Enlace alternativo
+          cinta: cols[8]?.replace(/"/g, "") || "",             // Texto de la cinta
+          cintaOnOff: (cols[9] || "").toLowerCase().trim(),    // Celda J: controla si se muestra la cinta
+          ligacinta: cols[10]?.replace(/"/g, "") || "",        // Enlace de la cinta
+          onoff: (cols[11] || "").toLowerCase().trim()         // Celda L: controla si el banner está activo
+        };
+      });
 }
 
 // 🖼️ Función para mostrar el banner seleccionado en el DOM
