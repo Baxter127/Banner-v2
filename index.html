@@ -19,7 +19,7 @@
     -------------------------------*/
     .banner {
       position: relative; /* Permite posicionar elementos hijos con position:absolute */
-      width: 80%; /* Ocupa todo el ancho disponible */
+      width: 100%; /* TODO EL ANCHO DISPONIBLE */
       max-width: 1440px; /* Limita el ancho máximo para pantallas grandes */
       margin: 0 auto; /* Centra horizontalmente */
       overflow: hidden; /* Oculta contenido que sobresalga del contenedor */
@@ -133,7 +133,7 @@
     .banner.desktop .contenido h1 {
       font-size: 3rem; /* TAMAÑO DE LETRA */
       font-weight: 800; /* LETRA GRUESA */
-      margin: 0 0 20px; /* MARGEN INFERIOR */
+      margin: 0 0 30px; /* MARGEN INFERIOR */
     }
 
     .banner.desktop .contenido p {
@@ -145,7 +145,7 @@
     .banner.desktop .cta {
       font-size: 1.2rem; /* TAMAÑO DE LETRA */
       padding: 9px 70px; /* LARGO Y ANCHO DEL BOTON */
-      margin: 0 200px; /* MARGEN PARA CENTRAR EL BOTON */
+      margin: 0px 270px 0px; /* MARGEN PARA CENTRAR EL BOTON */
       display: inline-block;
       text-align: center; /*TEXTO CENTRADO*/
       white-space: nowrap; /* EVITA QUE EL TEXTO ESTE EN VARIAS LINEA */
@@ -166,19 +166,21 @@
       .banner.movil .contenido h1 {
         font-size:  4rem; /* TAMAÑO DE LETRA */
         font-weight: 700; /* LETRA GRUESA */
+        margin: 60px 0px 20px; /* MARGEN INFERIOR */ 
       }
 
       .banner.movil .contenido p {
         color: white;
-        font-size: 2.2rem; /* ≈35px, muy legible en móvil */
+        font-size: 2.2rem; /*TAMAÑO DE LETRA */
         font-weight: bold; /* LETRA GRUESA */
         text-align: center; 
+        margin: 0 0 20px; /* MARGEN INFERIOR */ 
       }
 
       .banner.movil .cta {
         font-size: 2.8rem; /* TAMAÑO DE LETRA */
-        margin-top: 250px; /* EMPUJA EL BOTON HACIA ABAJO  */
-        padding: 10px 150px; /* LARGO Y ANCHO DEL BOTON */
+        margin-top: 340px; /* EMPUJA EL BOTON HACIA ABAJO  */
+        padding: 20px 150px; /* LARGO Y ANCHO DEL BOTON */
       }
 
       .banner.movil .cinta {
